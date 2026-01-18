@@ -1,0 +1,42 @@
+.card {
+  width: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+}
+
+.card:focus-within {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.paddingSm {
+  padding: 0.75rem;
+}
+
+.paddingMd {
+  padding: 1rem;
+}
+
+.paddingLg {
+  padding: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  .card:hover {
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+  }
+}

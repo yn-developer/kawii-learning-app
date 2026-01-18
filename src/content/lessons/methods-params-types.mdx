@@ -1,0 +1,46 @@
+export const meta = {
+  slug: "method-vs-params",
+  title: "Method Parameters and Type Annotations",
+  description: "Method Parameters and Type Annotations",
+  order: 4,
+};
+
+### NestJS Controller Parameters: Runtime Values vs Type Annotations
+
+**Key distinction (this answers your question directly)**
+
+**Is `param: FindOneParam` part of the method parameter declaration or just a TS type?**
+
+### Correct answer:
+
+- `param` → **method parameter (runtime)**    
+- `FindOneParam` → **TypeScript type annotation (compile-time only)**
+
+They _look_ like one thing, but they live in **different worlds**.
+
+##  Why NestJS examples use classes for params DTOs
+
+If `FindOneParam` is defined like this:
+```js
+export class FindOneParam 
+{   
+  @IsUUID()   
+  id: string; 
+}
+```
+
+Then NestJS can:
+
+- Instantiate the class
+- Populate `id`
+- Validate it
+- Reject invalid requests automatically
+
+If it were an interface:
+
+`interface FindOneParam { id: string; }`
+
+NestJS would:
+- Assign a plain object
+- Skip validation
+- Lose runtime guarantees

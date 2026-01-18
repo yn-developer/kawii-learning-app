@@ -1,0 +1,31 @@
+export const meta = {
+  slug: "nestjs-architecture",
+  title: "NestJS Architecture: How & Why",
+  description: "Modules, controllers, providers, and why Nest looks the way it does.",
+  order: 2
+};
+
+# NestJS Architecture: How & Why
+
+<Reveal title="Quick mental model">
+Nest is built around **Modules** (wiring), **Providers** (services), and **Controllers** (HTTP endpoints).
+</Reveal>
+
+<QuizSingleChoice
+  question="In NestJS, what typically owns the wiring of controllers/providers?"
+  options={[
+    { id: "a", label: "Controller" },
+    { id: "b", label: "Module" },
+    { id: "c", label: "Pipe" }
+  ]}
+  correctId="b"
+/>
+
+<Flashcards
+  storageKey="flashcards-nestjs-architecture"
+  cards={[
+    { id: "module", front: "What is a Module?", back: "A class annotated with @Module that groups providers/controllers." },
+    { id: "provider", front: "What is a Provider?", back: "A class annotated with @Injectable used via dependency injection." },
+  ]}
+/>
+<Checkpoint slug="nestjs-architecture" checkpointId="done-mental-model" label="I understand the mental model" />

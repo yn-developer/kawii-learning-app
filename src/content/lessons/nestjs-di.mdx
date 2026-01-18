@@ -1,0 +1,24 @@
+export const meta = {
+  slug: "nestjs-di",
+  title: "Dependency Injection in NestJS",
+  description: "Providers, tokens, scopes, and common DI mistakes.",
+  order: 3
+};
+
+# Dependency Injection in NestJS
+
+<Reveal title="DI in one sentence">
+DI means your class receives what it needs from a container, instead of creating dependencies itself.
+</Reveal>
+
+<QuizSingleChoice
+  question="Which provider style is best when you need runtime configuration?"
+  options={[
+    { id: "a", label: "useValue" },
+    { id: "b", label: "useFactory" },
+    { id: "c", label: "useClass" }
+  ]}
+  correctId="b"
+/>
+
+<Checkpoint slug="nestjs-di" checkpointId="done-provider-types" label="I know provider styles" />

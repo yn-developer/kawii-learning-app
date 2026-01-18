@@ -1,0 +1,10 @@
+.strong {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.em {
+  font-style: italic;
+  color: var(--color-muted);
+}
