@@ -1,0 +1,23 @@
+export const meta = {
+  slug: "mongodb-data-types",
+  title: "MongoDB Data Types",
+  description: "Overview of BSON types with simple examples.",
+  order: 6,
+  category: "mongodb",
+};
+
+# MongoDB Data Types
+
+MongoDB stores documents in binary serialized format called **BSON**. Let’s go through each BSON type supported by MongoDB.
+
+> Tip: Use `insert` and `find` to explore types quickly; we’ll dive deeper later.
+
+## String
+
+BSON strings are UTF-8, which allows us to use most international characters conveniently. In the below example, `name` is a string field.
+
+```
+db.tasks.insertOne({
+  name: "Setup ToDo App",
+});
+```

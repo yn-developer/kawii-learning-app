@@ -9,7 +9,8 @@ import { Button } from "@/core/ui/Button";
 import { Card } from "@/core/ui/Card";
 import { Container } from "@/core/ui/Container";
 import { Stack } from "@/core/ui/Stack";
-import { lessonLoaders } from "@/content/lessons";
+import { defaultLocale, lessonLoaders } from "@/content/lessons";
+import { useI18n } from "@/core/lib/i18n";
 import { useProgressStore } from "@/features/progress/model/progressStore";
 import type { Lesson } from "@/features/lessons/model/types";
 import { mdxComponents } from "./mdx-components";
@@ -30,6 +31,7 @@ export function LessonPage({ lesson }: LessonPageProps) {
   const isComplete = useProgressStore(
     (state) => state.completedBySlug[meta.slug] ?? false,
   );
+  const { lang } = useI18n();
 
   useEffect(() => {
     hydrateFromStorage();
@@ -37,7 +39,8 @@ export function LessonPage({ lesson }: LessonPageProps) {
 
   useEffect(() => {
     let isActive = true;
-    const loader = lessonLoaders[meta.slug];
+    const loaders = lessonLoaders[meta.slug];
+    const loader = loaders?.[lang] ?? loaders?.[defaultLocale] ?? Object.values(loaders ?? {})[0];
     if (!loader) return undefined;
 
     loader()
@@ -52,7 +55,7 @@ export function LessonPage({ lesson }: LessonPageProps) {
     return () => {
       isActive = false;
     };
-  }, [meta.slug]);
+  }, [lang, meta.slug]);
 
   const handleComplete = () => {
     markLessonComplete(meta.slug);

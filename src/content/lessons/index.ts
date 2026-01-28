@@ -2,18 +2,79 @@
 // Do not edit manually.
 import type { LessonMeta, LessonModule } from "@/features/lessons/model/types";
 
-export const lessonLoaders: Record<string, () => Promise<LessonModule>> = {
-  "methods-params-types": () => import("./methods-params-types.mdx"),
-  "nestjs-architecture": () => import("./nestjs-architecture.mdx"),
-  "nestjs-di": () => import("./nestjs-di.mdx"),
-  "welcome": () => import("./welcome.mdx"),
+export const lessonLoaders: Record<string, Record<string, () => Promise<LessonModule>>> = {
+  "aggregation-pipeline-part-1": {
+    "en": () => import("./mongodb/aggregation-pipeline-part-1.mdx"),
+  },
+  "aggregation-pipeline-part-2": {
+    "en": () => import("./mongodb/aggregation-pipeline-part-2.mdx"),
+  },
+  "mongodb-auth-docker": {
+    "en": () => import("./mongodb/mongodb-auth-docker.mdx"),
+  },
+  "mongodb-authorization": {
+    "en": () => import("./mongodb/mongodb-authorization.mdx"),
+  },
+  "mongodb-data-types": {
+    "en": () => import("./mongodb/mongodb-data-types.mdx"),
+  },
+  "mongodb-indexing": {
+    "en": () => import("./mongodb/mongodb-indexing.mdx"),
+  },
+  "mongodb-queries-usage": {
+    "en": () => import("./mongodb/mongodb-queries-usage.mdx"),
+  },
+  "mongodb-text-search": {
+    "en": () => import("./mongodb/mongodb-text-search.mdx"),
+  },
+  "nestjs-architecture": {
+    "en": () => import("./nestjs/nestjs-architecture.mdx"),
+    "my": () => import("./nestjs/nestjs-architecture.my.mdx"),
+  },
+  "nestjs-di": {
+    "en": () => import("./nestjs/nestjs-di.mdx"),
+    "my": () => import("./nestjs/nestjs-di.my.mdx"),
+  },
+  "welcome": {
+    "en": () => import("./nestjs/welcome.mdx"),
+    "my": () => import("./nestjs/welcome.my.mdx"),
+  },
+  "methods-params-types": {
+    "en": () => import("./typescript/methods-params-types.mdx"),
+    "my": () => import("./typescript/methods-params-types.my.mdx"),
+  },
+  "ts-built-in-return-types": {
+    "en": () => import("./typescript/ts-built-in-return-types.mdx"),
+    "my": () => import("./typescript/ts-built-in-return-types.my.mdx"),
+  },
+  "type-drift-case": {
+    "en": () => import("./typescript/type-drift-case.mdx"),
+    "my": () => import("./typescript/type-drift-case.my.mdx"),
+  },
 };
 
-export const lessonMeta: Record<string, LessonMeta> = {
-  "methods-params-types": {"slug":"methods-params-types","title":"Method Parameters and Type Annotations","description":"Method Parameters and Type Annotations","order":4},
-  "nestjs-architecture": {"slug":"nestjs-architecture","title":"NestJS Architecture: How & Why","description":"Modules, controllers, providers, and why Nest looks the way it does.","order":2},
-  "nestjs-di": {"slug":"nestjs-di","title":"Dependency Injection in NestJS","description":"Providers, tokens, scopes, and common DI mistakes.","order":3},
-  "welcome": {"slug":"welcome","title":"Welcome to NestJS Learning","description":"Overview of the learning path and how to navigate lessons.","order":1},
+export const lessonMetaByLocale: Record<string, Record<string, LessonMeta>> = {
+  "aggregation-pipeline-part-1": {"en":{"slug":"aggregation-pipeline-part-1","title":"Aggregation Pipeline - Part 1","description":"Intro to MongoDB aggregation pipelines with stages like $match and $group.","order":1,"category":"mongodb"}},
+  "aggregation-pipeline-part-2": {"en":{"slug":"aggregation-pipeline-part-2","title":"Aggregation Pipeline - Part 2","description":"Use the $lookup stage to perform joins inside MongoDB aggregation pipelines.","order":2,"category":"mongodb"}},
+  "mongodb-auth-docker": {"en":{"slug":"mongodb-auth-docker","title":"MongoDB Auth with Docker","description":"Run MongoDB with authentication in Docker and create database users.","order":3,"category":"mongodb"}},
+  "mongodb-authorization": {"en":{"slug":"mongodb-authorization","title":"MongoDB Authorization","description":"Enable authorization, create roles and users, and assign privileges.","order":4,"category":"mongodb"}},
+  "mongodb-data-types": {"en":{"slug":"mongodb-data-types","title":"MongoDB Data Types","description":"Overview of BSON types with simple examples.","order":6,"category":"mongodb"}},
+  "mongodb-indexing": {"en":{"slug":"mongodb-indexing","title":"MongoDB Indexing","description":"Index basics, defaults, and createIndex options in MongoDB.","order":5,"category":"mongodb"}},
+  "mongodb-queries-usage": {"en":{"slug":"mongodb-queries-usage","title":"Queries Usage on Project","description":"Breakdown of filter, projection/update, and options in MongoDB queries.","order":7,"category":"mongodb"}},
+  "mongodb-text-search": {"en":{"slug":"mongodb-text-search","title":"MongoDB Text Search","description":"Sorting text search results using textScore in MongoDB.","order":8,"category":"mongodb"}},
+  "nestjs-architecture": {"en":{"slug":"nestjs-architecture","title":"NestJS Architecture: How & Why","description":"Modules, controllers, providers, and why Nest looks the way it does.","order":2,"category":"nestjs"},"my":{"slug":"nestjs-architecture","title":"NestJS ဖွဲ့စည်းပုံ: ဘာလဲ၊ ဘာကြောင့်လဲ","description":"Modules, controllers, providers တွေ ဘယ်လိုပေါင်းစည်းသလဲ","order":2,"category":"nestjs"}},
+  "nestjs-di": {"en":{"slug":"nestjs-di","title":"Dependency Injection in NestJS","description":"Providers, tokens, scopes, and common DI mistakes.","order":3,"category":"nestjs"},"my":{"slug":"nestjs-di","title":"NestJS Dependency Injection","description":"Providers, tokens, scopes, DI ထဲက လေ့လာစရာတွေ","order":3,"category":"nestjs"}},
+  "welcome": {"en":{"slug":"welcome","title":"Welcome to NestJS Learning","description":"Overview of the learning path and how to navigate lessons.","order":1,"category":"nestjs"},"my":{"slug":"welcome","title":"NestJS သင်ကြားမှုကို ကြိုဆိုပါတယ်","description":"သင်ကြားရေးလမ်းကြောင်းနှင့် လမ်းညွှန်သင်ခန်းစာများအကြောင်း","order":1,"category":"nestjs"}},
+  "methods-params-types": {"en":{"slug":"methods-params-types","title":"Method Parameters and Type Annotations","description":"Method Parameters and Type Annotations","order":3,"category":"typescript"},"my":{"slug":"methods-params-types","title":"Method Parameter နဲ့ Type Annotation ခွဲခြားခြင်း","description":"Runtime parameter နဲ့ TypeScript type ကြားက ကွာခြားချက်","order":3,"category":"typescript"}},
+  "ts-built-in-return-types": {"en":{"slug":"ts-built-in-return-types","title":"TypeScript Knows Built-in Return Types","description":"Why TypeScript enforces return types for built-in JavaScript functions.","order":1,"category":"typescript"},"my":{"slug":"ts-built-in-return-types","title":"TypeScript တက်ကြွတယ်: Built-in Function Return Types","description":"JS built-ins တွေမှာ TypeScript ဘယ်လို type စစ်လဲ","order":1,"category":"typescript"}},
+  "type-drift-case": {"en":{"slug":"type-drift-case","title":"Type Drift: When Types and Runtime Disagree","description":"An example of compile-time vs runtime drift and how schema libs help.","order":2,"category":"typescript"},"my":{"slug":"type-drift-case","title":"Type Drift: Type နဲ့ Runtime မကိုက်တဲ့အခါ","description":"Compile-time နဲ့ runtime ကွာခြားတဲ့ ဥပမာနှင့် ဖြေရှင်းနည်း","order":2,"category":"typescript"}},
 };
+
+export const lessonMeta: Record<string, LessonMeta> = Object.fromEntries(
+  Object.entries(lessonMetaByLocale).map(([slug, metas]) => [slug, metas["en"] ?? Object.values(metas)[0]]),
+);
 
 export const lessonSlugs = Object.keys(lessonLoaders);
+
+export const availableLocales = ["en","my"];
+export const defaultLocale = "en";

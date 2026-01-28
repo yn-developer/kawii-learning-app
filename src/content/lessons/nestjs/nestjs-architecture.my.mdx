@@ -1,0 +1,33 @@
+export const meta = {
+  slug: "nestjs-architecture",
+  title: "NestJS ဖွဲ့စည်းပုံ: ဘာလဲ၊ ဘာကြောင့်လဲ",
+  description: "Modules, controllers, providers တွေ ဘယ်လိုပေါင်းစည်းသလဲ",
+  order: 2,
+  category: "nestjs",
+};
+
+# NestJS ဖွဲ့စည်းပုံ
+
+<Reveal title="မြန်မြန် နားလည်အောင်">
+Nest ကို **Modules** (wiring), **Providers** (services), **Controllers** (HTTP endpoints) တွေနဲ့ တည်ဆောက်ထားပါတယ်။
+</Reveal>
+
+<QuizSingleChoice
+  question="NestJS မှာ wiring ကို ပိုင်ဆိုင်ထားတာ ဘာလဲ?"
+  options={[
+    { id: "a", label: "Controller" },
+    { id: "b", label: "Module" },
+    { id: "c", label: "Pipe" }
+  ]}
+  correctId="b"
+/>
+
+<Flashcards
+  storageKey="flashcards-nestjs-architecture-my"
+  cards={[
+    { id: "module", front: "Module ဆိုတာဘာလဲ?", back: "@Module နဲ့ အမှတ်ပြထားတဲ့ အတန်း၊ controller/provider တွေကိုစုစည်းပေးတယ်" },
+    { id: "provider", front: "Provider ဆိုတာဘာလဲ?", back: "@Injectable နဲ့ အမှတ်ပြထားတဲ့ အတန်း၊ DI နဲ့သုံးမယ့် service" },
+  ]}
+/>
+
+<Checkpoint slug="nestjs-architecture" checkpointId="done-mental-model" label="Mental model ကို နားလည်ပြီ" />

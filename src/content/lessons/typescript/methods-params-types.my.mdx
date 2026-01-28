@@ -1,0 +1,43 @@
+export const meta = {
+  slug: "method-vs-params",
+  title: "Method Parameter နဲ့ Type Annotation ခွဲခြားခြင်း",
+  description: "Runtime parameter နဲ့ TypeScript type ကြားက ကွာခြားချက်",
+  order: 3,
+  category: "typescript",
+};
+
+### NestJS Controller Parameters: Runtime Values vs Type Annotations
+
+**အဓိက အချက်**  
+`param: FindOneParam` မှာ `param` က runtime parameter, `FindOneParam` က TypeScript type annotation ပါ။
+
+### အမှန်တကယ် ဆိုလိုတာ
+
+- `param` → **runtime parameter**
+- `FindOneParam` → **TypeScript type (compile-time)**
+
+မြင်ရသလို တစ်ခုပုံပေါက်ပေမယ့် ထဲမှာ ကွာပါတယ်။
+
+## ဘာလို့ NestJS က params DTO ကို class နဲ့ရေးသလဲ
+
+```
+export class FindOneParam {
+  @IsUUID()
+  id: string;
+}
+```
+
+FindOneParam ကို အခုလိုရေးရင် NestJS က
+- class ကို instantiate လုပ်တယ်
+- `id` ကို ထည့်ပေးတယ်
+- validate လုပ်တယ်
+- မတည့်ရင် request ကို ပယ်ဖျက်တယ်
+
+Interface သက်သက် ဖြစ်ခဲ့ရင်:
+
+`interface FindOneParam { id: string; }`
+
+NestJS က
+- ပုံမှန် object တစ်ခု ထည့်ပေးမယ်
+- validation မလုပ်ဘူး
+- runtime guarantee မရှိတော့ဘူး

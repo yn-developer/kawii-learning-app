@@ -1,0 +1,26 @@
+export const meta = {
+  slug: "mongodb-authorization",
+  title: "MongoDB Authorization",
+  description: "Enable authorization, create roles and users, and assign privileges.",
+  order: 4,
+  category: "mongodb",
+};
+
+# MongoDB Authorization
+
+Learn and practice how to enable authorization, create roles and users, and assign user roles on a database.
+
+By default, a new MongoDB database doesn’t enable authorization, and has no users. MongoDB comes with default roles such as `root`, `userAdmin`, `userAdminAnyDatabase` when we install it.
+
+The `root` is the superuser role that provides system-wide access to the user. It can also create custom roles using a combination of permissions.
+
+To learn about authorization, we’ll create an admin user with the `userAdminAnyDatabase` role. Authorization is not required for the development.
+
+The `userAdminAnyDatabase` role allows us to add or remove users for any database on MongoDB.
+
+## Create a new user
+
+We use the below steps to create a new user in MongoDB.
+
+1. Use `mongosh` to connect to MongoDB.
+2. Create the user with the desired role.

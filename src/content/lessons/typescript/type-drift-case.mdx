@@ -1,0 +1,68 @@
+export const meta = {
+  slug: "type-drift-case",
+  title: "Type Drift: When Types and Runtime Disagree",
+  description: "An example of compile-time vs runtime drift and how schema libs help.",
+  order: 2,
+  category: "typescript",
+};
+
+## Understanding Type Drift: When TypeScript and Runtime Disagree
+
+Imagine you have a TypeScript type for a user object:
+
+```ts
+type User = {
+  id: number;
+  name: string;
+  role: "admin" | "user";
+};
+```
+
+You also write a **manual validator** to check API responses:
+
+```ts
+function isUser(x: any): x is User {
+  return typeof x.id === "number" &&
+    typeof x.name === "string" &&
+    (x.role === "admin" || x.role === "user");
+}
+```
+
+Now suppose the backend adds a new role `"superadmin"`:
+
+```ts
+const apiResponse = { id: 1, name: "Alice", role: "superadmin" };
+```
+
+---
+
+### Scenario 1: TypeScript unaware of the new role
+
+- **Runtime:** `isUser(apiResponse)` returns `false` → the object is rejected
+- **TypeScript:** still thinks it’s safe to use as `User` → compile-time doesn’t catch the mismatch
+
+_Result:_ runtime check blocks usage, but TS types are out of sync.
+
+### Scenario 2: TypeScript updated, validator forgotten
+
+```ts
+type User = { id: number; name: string; role: "admin" | "user" | "superadmin"; }
+```
+
+- **TypeScript:** believes `"superadmin"` is valid
+- **Validator:** still only allows `"admin"` or `"user"`
+- **Runtime:** validator fails → app crashes or data is rejected
+
+_Result:_ TS thinks everything is safe, but runtime disagrees — classic **type drift**.
+
+---
+### Key Takeaways
+
+1. **Type drift** happens when compile-time types diverge from runtime reality.
+2. Manual validators and TypeScript types are **two separate sources of truth** → easy to get out of sync.
+3. **Schema libraries** (like Zod) solve this by combining:
+    - Runtime validation
+    - Type inference → one source of truth for both compile-time and runtime.
+4. Always consider **where your assumptions stop** — especially when dealing with API data or external input.
+
+> In short: type drift is sneaky, but schemas + TypeScript keep your data honest.

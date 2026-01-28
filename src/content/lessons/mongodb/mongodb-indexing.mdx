@@ -1,0 +1,29 @@
+export const meta = {
+  slug: "mongodb-indexing",
+  title: "MongoDB Indexing",
+  description: "Index basics, defaults, and createIndex options in MongoDB.",
+  order: 5,
+  category: "mongodb",
+};
+
+# MongoDB Indexing
+
+Indexes are MongoDB’s shortcuts. They speed up reads but add a small tax to writes, so create them deliberately. MongoDB can index embedded documents too.
+
+> Note: The `_id` field is indexed by default.
+
+## Creating an index
+
+```
+db.<collection-name>.createIndex({
+    <key>: 1,
+    ...
+}, {
+    name: <string>,
+    unique: <boolean>,
+    sparse: <boolean>,
+    expireAfterSeconds: <number>,
+    hidden: <boolean>,
+    partialFilterExpression: <document>,
+})
+```

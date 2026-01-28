@@ -1,0 +1,28 @@
+export const meta = {
+  slug: "aggregation-pipeline-part-2",
+  title: "Aggregation Pipeline - Part 2",
+  description: "Use the $lookup stage to perform joins inside MongoDB aggregation pipelines.",
+  order: 2,
+  category: "mongodb",
+};
+
+# Aggregation Pipeline - Part 2
+
+Picking up from Part 1, let’s add the next “station” to our conveyor belt: `$lookup`, the built-in way to pull related data (left-outer-join style) into the stream.
+
+## ＄lookup stage
+
+We use the **＄lookup** stage to perform join operations with other collections. This stage performs a left outer join for each input document, and adds a new `array` field where the results for the join are added. Next, the transformed documents are sent to the next stage.
+
+We use the below syntax to define the `＄lookup` stage.
+
+```
+{
+  $lookup: {
+    from: <target collection to join to>,
+    localField: <field of the source document>,
+    foreignField: <field of the target collection>,
+    as: <output array field>
+  }
+}
+```

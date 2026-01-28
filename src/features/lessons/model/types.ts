@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 
 export type LessonMeta = {
   slug: string;
+  category: string;
   title: string;
   description: string;
   order: number;
@@ -16,3 +17,5 @@ export type Lesson = {
   meta: LessonMeta;
   mdxSource?: string;
 };
+
+export type Locale = "en" | "my";

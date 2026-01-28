@@ -1,0 +1,25 @@
+export const meta = {
+  slug: "nestjs-di",
+  title: "NestJS Dependency Injection",
+  description: "Providers, tokens, scopes, DI ထဲက လေ့လာစရာတွေ",
+  order: 3,
+  category: "nestjs",
+};
+
+# NestJS Dependency Injection
+
+<Reveal title="DI တစ်ကြောင့်ရေး">
+DI ဆိုတာ class တစ်ခုက ကိုယ်လိုအပ်တာတွေကို container ကနေ လက်ခံသုံးတာပါ။ ကိုယ်တိုင် create မလုပ်ဘူး။
+</Reveal>
+
+<QuizSingleChoice
+  question="Runtime config လိုတဲ့အခါ ဘယ် provider style က အထူးသင့်တော်လဲ?"
+  options={[
+    { id: "a", label: "useValue" },
+    { id: "b", label: "useFactory" },
+    { id: "c", label: "useClass" }
+  ]}
+  correctId="b"
+/>
+
+<Checkpoint slug="nestjs-di" checkpointId="done-provider-types" label="Provider styles ကိုသိပြီ" />

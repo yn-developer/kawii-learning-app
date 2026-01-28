@@ -1,0 +1,47 @@
+export const meta = {
+  slug: "ts-built-in-return-types",
+  title: "TypeScript တက်ကြွတယ်: Built-in Function Return Types",
+  description: "JS built-ins တွေမှာ TypeScript ဘယ်လို type စစ်လဲ",
+  order: 1,
+  category: "typescript",
+};
+
+> TypeScript က ကိုယ့် function တွေအသက်သာမက၊ JavaScript built-in function တွေရဲ့ return type ကိုပါ စစ်ပါတယ်။
+
+### TypeScript က built-in return types ကို သိတယ်
+
+- **အဓိက takeaway:** TypeScript က ကိုယ့် code ပဲမဟုတ်၊ built-in JS function တွေရဲ့ type ကိုပါ အတိအကျ enforce လုပ်တယ်။
+- ဥပမာ:
+    - `prompt()` → `string | null`
+    - `confirm()` → `boolean`
+    - `document.getElementById()` → `HTMLElement | null`
+- ဒါကြောင့် built-in API သုံးတဲ့အခါ type mismatch ကို compile-time မှာပဲ ဖမ်းလို့ရတယ်။
+
+Good Practice:
+- user input ကလို အပြင် sources တွေက type ကို အမြဲစစ်ပါ။
+- `typeof`, `instanceof` နဲ့ narrow လုပ်ပါ။
+- `Number()`, `String()` စတာနဲ့ type ပြောင်းတဲ့အခါ invalid case ကို handle ပေးပါ။
+- TypeScript ရဲ့ knowledge ကို ရင်းနှီးဖို့—it prevents runtime errors.
+
+### JS built-in functions ရဲ့ return type များ
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Return Type (TypeScript)</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>prompt(message?: string)</code></td><td><code>string | null</code></td><td>ထွက်မလာနိုင်တာ null အပြင် string</td></tr>
+    <tr><td><code>alert(message?: any)</code></td><td><code>void</code></td><td>return value မရှိဘူး</td></tr>
+    <tr><td><code>confirm(message?: string)</code></td><td><code>boolean</code></td><td>true / false</td></tr>
+    <tr><td><code>Number(value?: any)</code></td><td><code>number</code></td><td>NaN ဖြစ်နိုင်</td></tr>
+    <tr><td><code>String(value?: any)</code></td><td><code>string</code></td><td>အရာအားလုံးကို string ပြောင်း</td></tr>
+    <tr><td><code>parseInt(s: string, radix?: number)</code></td><td><code>number</code></td><td>integer (invalid ရင် NaN)</td></tr>
+    <tr><td><code>JSON.parse(text: string)</code></td><td><code>any</code></td><td>exact type မသိ၊ assertion လိုနိုင်</td></tr>
+    <tr><td><code>Array.prototype.map(callback)</code></td><td><code>Array&lt;ReturnType&gt;</code></td><td>callback ထုတ်တဲ့ type ကိုယူတယ်</td></tr>
+    <tr><td><code>document.getElementById(id: string)</code></td><td><code>HTMLElement | null</code></td><td>element မရှိရင် null</td></tr>
+  </tbody>
+</table>

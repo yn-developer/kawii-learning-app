@@ -1,0 +1,53 @@
+export const meta = {
+  slug: "type-drift-case",
+  title: "Type Drift: Type နဲ့ Runtime မကိုက်တဲ့အခါ",
+  description: "Compile-time နဲ့ runtime ကွာခြားတဲ့ ဥပမာနှင့် ဖြေရှင်းနည်း",
+  order: 2,
+  category: "typescript",
+};
+
+## Type Drift ဆိုတာဘာလဲ
+
+`User` type တစ်ခု ရှိတယ်လို့ ယူပါစို့:
+
+```ts
+type User = {
+  id: number;
+  name: string;
+  role: "admin" | "user";
+};
+```
+
+API response ကို စစ်ဖို့ manual validator ရေးထားတယ်:
+
+```ts
+function isUser(x: any): x is User {
+  return typeof x.id === "number" &&
+    typeof x.name === "string" &&
+    (x.role === "admin" || x.role === "user");
+}
+```
+
+Backend က `"superadmin"` role အသစ် ထည့်လိုက်တယ်:
+
+```ts
+const apiResponse = { id: 1, name: "Alice", role: "superadmin" };
+```
+
+### Scenario 1: TypeScript မသိသေး
+- **Runtime:** `isUser(apiResponse)` က false → reject
+- **TypeScript:** type ပြည့်စုံတယ်လို့ ထင်နေတယ် → compile-time မှာ မဖမ်း
+
+### Scenario 2: TypeScript အပ်ဒိတ်၊ Validator မပြင်ရသေး
+`type User = { ... role: "admin" | "user" | "superadmin" }`
+- **TypeScript:** OK
+- **Validator:** "admin"/"user" ပဲ ခွင့်ပြု → runtime မှာ reject
+
+### Key Takeaways
+
+1. Type drift = compile-time type နဲ့ runtime reality ကွာခြားမှု
+2. Manual validator + TS type ဆိုရင် sources of truth နှစ်ခု → sync မရှိလို့ drift ဖြစ်လွယ်
+3. Zod စတဲ့ schema libs တို့ သုံးပြီး runtime validation + type inference တစ်စုတည်း ထားပါ
+4. API data လို အပြင်ဒေတာတွေမှာ assumptions ကို အမြဲ စဥ်းစားထားပါ
+
+> Schema + TypeScript တို့ကို သုံးပါ— data ကို honest ရှိနေစေဖို့

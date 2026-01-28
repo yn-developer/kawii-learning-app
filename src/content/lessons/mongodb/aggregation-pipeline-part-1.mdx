@@ -1,0 +1,29 @@
+export const meta = {
+  slug: "aggregation-pipeline-part-1",
+  title: "Aggregation Pipeline - Part 1",
+  description: "Intro to MongoDB aggregation pipelines with stages like $match and $group.",
+  order: 1,
+  category: "mongodb",
+};
+
+# Aggregation Pipeline - Part 1
+
+Think of an aggregation pipeline as a conveyor belt: documents hop on, move through a series of stations, and hop off as shaped, grouped, and summarized results. In this first part, we’ll get comfortable with the belt itself and two core stations, $match and $group.
+
+We’ll cover:
+
+- $match stage
+- $group stage
+
+**Aggregation** fetches data based on a query, processes it, and returns computed results. It works in **pipelines**, each stage doing one job before handing documents to the next. Multiple stages can run, and pipelines can even mix data from multiple collections.
+
+## What can a stage do?
+
+Common stage capabilities:
+
+- **Filter**: A filter operation is performed on a collection through a provided query.
+- **Join**: Records from different stages can be added to the primary collection records.
+- **Group**: The results of the previous stage can be grouped.
+- **Sort**: The results of the previous stage can be sorted.
+- **Operations**: Counting and merging records, or arithmetic operations.
+- **Transforming the output**: We can transform a document or decide which fields to return as a result of the aggregation.

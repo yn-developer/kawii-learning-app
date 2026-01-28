@@ -1,0 +1,30 @@
+export const meta = {
+  slug: "mongodb-text-search",
+  title: "MongoDB Text Search",
+  description: "Sorting text search results using textScore in MongoDB.",
+  order: 8,
+  category: "mongodb",
+};
+
+# Text Search - Part 2
+
+## Sorting text search result
+
+MongoDB text search computes a `score` which can be used to sort text search results. We need to use projection to return the text `score` and sort the documents.
+
+Here’s an example to sort documents based on the text `score`.
+
+```jsx
+db.articles.find(
+  {
+    $text: {
+      $search: "MongoDB Topic"
+    }
+  },
+  {
+    score: {
+      $meta: "textScore"
+    }
+  }
+).sort({ score: { $meta: "textScore" } })
+```

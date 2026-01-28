@@ -1,0 +1,70 @@
+export const meta = {
+  slug: "ts-built-in-return-types",
+  title: "TypeScript Knows Built-in Return Types",
+  description: "Why TypeScript enforces return types for built-in JavaScript functions.",
+  order: 1,
+  category: "typescript",
+};
+
+> TypeScript does not only check user-defined functions but also **checks the return values of JavaScript built-in functions**, so you have to be aware of what type those functions actually return when using them in your code
+
+### TypeScript knows built-in function return types
+
+- **Key takeaway (your insight!):** TypeScript doesn’t just check your own functions—it also enforces the types of **built-in JavaScript functions**.
+- Example:
+    - `prompt()` → `string | null`
+    - `confirm()` → `boolean`
+    - `document.getElementById()` → `HTMLElement | null`
+- This allows TypeScript to **catch type mismatches at compile time**, even for built-in APIs.
+
+Good Practice:
+- Always **check the type of values** coming from external sources like user input.
+- Use **type narrowing** (`typeof`, `instanceof`) before calling type-specific methods.
+- Convert types safely when needed (`Number()`, `String()`) and handle invalid cases.
+- Trust TypeScript’s knowledge of built-in functions—it helps you prevent runtime errors.
+
+### Example of JS built-in functions TypeScript knows about their return types
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Return Type (TypeScript)</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>prompt(message?: string)</code></td><td><code>string | null</code></td><td>Always string if user types something, null if canceled</td></tr>
+    <tr><td><code>alert(message?: any)</code></td><td><code>void</code></td><td>No return value, safe to call anywhere</td></tr>
+    <tr><td><code>confirm(message?: string)</code></td><td><code>boolean</code></td><td>Returns true or false</td></tr>
+    <tr><td><code>Number(value?: any)</code></td><td><code>number</code></td><td>Converts to number, NaN if invalid</td></tr>
+    <tr><td><code>String(value?: any)</code></td><td><code>string</code></td><td>Converts anything to string</td></tr>
+    <tr><td><code>parseInt(s: string, radix?: number)</code></td><td><code>number</code></td><td>Returns integer, NaN if invalid</td></tr>
+    <tr><td><code>JSON.parse(text: string)</code></td><td><code>any</code></td><td>TypeScript can’t infer exact type, may need type assertion</td></tr>
+    <tr><td><code>Array.prototype.map(callback)</code></td><td><code>Array&lt;ReturnType&gt;</code></td><td>TypeScript infers return type from callback</td></tr>
+    <tr><td><code>document.getElementById(id: string)</code></td><td><code>HTMLElement | null</code></td><td>Can return null if element not found</td></tr>
+  </tbody>
+</table>
+
+### Match questions to return types
+
+Click a question on the left, then an answer on the right. Connect all pairs, then check your work.
+
+<MatchArrows
+  leftItems={[
+    { id: "q1", label: "prompt()" },
+    { id: "q2", label: "confirm()" },
+    { id: "q3", label: "JSON.parse()" },
+  ]}
+  rightItems={[
+    { id: "a1", label: "string | null" },
+    { id: "a2", label: "boolean" },
+    { id: "a3", label: "any" },
+  ]}
+  answerKey={[
+    ["q1", "a1"],
+    ["q2", "a2"],
+    ["q3", "a3"],
+  ]}
+  checkpoint={{ slug: "ts-built-in-return-types", id: "match-builtins", label: "Match built-ins" }}
+/>

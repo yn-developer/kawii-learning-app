@@ -1,0 +1,25 @@
+export const meta = {
+  slug: "mongodb-queries-usage",
+  title: "Queries Usage on Project",
+  description: "Breakdown of filter, projection/update, and options in MongoDB queries.",
+  order: 7,
+  category: "mongodb",
+};
+
+# Query parts breakdown
+
+Similar analogy to match with relational database
+
+- *filter* = where
+- *projection (or) update* = selection; projection defines fields to return. For update, use $set to define changes.
+- *options* = extra options, e.g., upsert:true creates a new value if it does not exist.
+
+```
+db.collection.updateMany(
+  { <filter> },
+  { <update> },
+  { <options> }
+)
+
+db.<collection>.<method>( filter , update_or_projection , options )
+```

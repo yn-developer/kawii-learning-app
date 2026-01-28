@@ -1,0 +1,28 @@
+export const meta = {
+  slug: "mongodb-auth-docker",
+  title: "MongoDB Auth with Docker",
+  description: "Run MongoDB with authentication in Docker and create database users.",
+  order: 3,
+  category: "mongodb",
+};
+
+# MongoDB Auth (Docker)
+
+> Note: if there is an existing volume with the same name, auth initialization will be skipped.
+
+```
+docker container run -dit --name mongo-server \
+  -p 27017:27017 \
+  -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
+  -e MONGO_INITDB_ROOT_PASSWORD=mongoTest \
+  -v mongodata:/data/db mongo:latest
+```
+
+With the root/superuser created above, create a new user for a specific db/collection and role:
+
+```
+docker exec -it mongo-server mongosh --authenticationDatabase admin \
+  -u mongoadmin -p mongoTest plannywork --eval \
+  "db.createUser({user: 'pUser', pwd: 'pUserPass', \
+  roles: [{role: 'readWrite', db: 'plannywork'}]});"
+```
